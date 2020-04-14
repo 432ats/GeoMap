@@ -53,6 +53,22 @@ class ViewController: UIViewController , UITextFieldDelegate{
                             // 軽度緯度をデバッグエリアに表示（１１）
                             print(targetCoordinate)
                             
+                            
+                            // MKPointAnnotationインスタンスを取得し、ピンを生成（１２）
+                            let pin = MKPointAnnotation()
+                            
+                            // ピンを置く場所に軽度緯度を設定（１３）
+                            pin.coordinate = targetCoordinate
+                            
+                            // ピンのタイトルを設定（１４）
+                            pin.title = searchKey
+                            
+                            // ピンを地図に置く（１５）
+                            self.dispMap.addAnnotation(pin)
+                            
+                            //
+                            self.dispMap.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+                            
                         }
                     }
                 }
