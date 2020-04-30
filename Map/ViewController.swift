@@ -78,5 +78,30 @@ class ViewController: UIViewController , UITextFieldDelegate{
         // デフォルト動作を行うのでtrueを返す（４）
         return true
     }
+    
+    @IBAction func changeMapButton(_ sender: Any) {
+        // 標準　→　航空写真　→ 航空写真＋標準
+        // →　3D Flyover → 3D Flyover＋標準
+        // → 交通機関
+        if dispMap.mapType == .standard {
+            dispMap.mapType = .satellite
+            
+        }else if dispMap.mapType == .satellite {
+            dispMap.mapType = .hybrid
+            
+        }else if dispMap.mapType == .hybrid {
+            dispMap.mapType = .satelliteFlyover
+            
+        }else if dispMap.mapType == .satelliteFlyover {
+            dispMap.mapType = .hybridFlyover
+            
+        }else if dispMap.mapType == .hybridFlyover {
+            dispMap.mapType = .mutedStandard
+            
+        }else {
+            dispMap.mapType = .standard
+        }
+    }
+    
 }
 
