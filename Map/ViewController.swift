@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class ViewController: UIViewController , UITextFieldDelegate{
+class ViewController: UIViewController , UITextFieldDelegate, CLLocationManagerDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,11 +18,26 @@ class ViewController: UIViewController , UITextFieldDelegate{
         
         // Text Fieldのdelegate通知先を設定
         inputText.delegate = self
+        
+        // CLLocationManagerをインスタンス化
+        myLocationManager = CLLocationManager()
+        
+        // 位置情報使用許可のリクエストを表示するメソッドの呼び出し
+        myLocationManager.requestWhenInUseAuthorization()
     }
 
     @IBOutlet weak var inputText: UITextField!
     
     @IBOutlet weak var dispMap: MKMapView!
+    
+    //CLLocationManagerの入れ物を用意
+    var myLocationManager: CLLocationManager!
+    
+    
+    //位置情報取得に失敗したときに呼び出されるメソッド
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error")
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // キーボードを閉じる（１）
