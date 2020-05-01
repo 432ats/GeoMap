@@ -12,6 +12,13 @@ import CoreLocation
 
 class ViewController: UIViewController , UITextFieldDelegate, CLLocationManagerDelegate{
 
+    @IBOutlet weak var inputText: UITextField!
+    
+    @IBOutlet weak var dispMap: MKMapView!
+    
+    //CLLocationManagerの入れ物を用意
+    var myLocationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,13 +33,6 @@ class ViewController: UIViewController , UITextFieldDelegate, CLLocationManagerD
         myLocationManager.requestWhenInUseAuthorization()
     }
 
-    @IBOutlet weak var inputText: UITextField!
-    
-    @IBOutlet weak var dispMap: MKMapView!
-    
-    //CLLocationManagerの入れ物を用意
-    var myLocationManager: CLLocationManager!
-    
     
     //位置情報取得に失敗したときに呼び出されるメソッド
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
